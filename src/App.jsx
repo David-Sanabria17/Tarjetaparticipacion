@@ -233,16 +233,16 @@ export default function App() {
               <div className="absolute top-0 right-10 sm:right-14 z-20 flex flex-col items-center pointer-events-none drop-shadow-lg">
                 {/* Golden Line */}
                 <div className="w-[2px] h-24 sm:h-32" style={{ background: 'linear-gradient(to bottom, #f3e5ab, #d4af37, #aa7c11)' }} />
-                
+
                 {/* Small Golden Cap at the end */}
                 <div className="relative flex flex-col items-center -mt-2">
-                   {/* Board */}
-                   <div className="w-14 h-7 sm:w-16 sm:h-8 bg-gradient-to-br from-[#fef5d4] via-[#d4af37] to-[#8a630c] shadow-sm" 
-                        style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
-                   {/* Skull cap */}
-                   <div className="w-7 h-3.5 sm:w-8 sm:h-4 bg-gradient-to-b from-[#b38f1d] to-[#4d3900] rounded-b-full -mt-1 shadow-inner" />
-                   {/* Center Button */}
-                   <div className="absolute top-[10px] sm:top-[12px] w-1.5 h-1.5 bg-[#ffffff] rounded-full shadow-sm" />
+                  {/* Board */}
+                  <div className="w-14 h-7 sm:w-16 sm:h-8 bg-gradient-to-br from-[#fef5d4] via-[#d4af37] to-[#8a630c] shadow-sm"
+                    style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }} />
+                  {/* Skull cap */}
+                  <div className="w-7 h-3.5 sm:w-8 sm:h-4 bg-gradient-to-b from-[#b38f1d] to-[#4d3900] rounded-b-full -mt-1 shadow-inner" />
+                  {/* Center Button */}
+                  <div className="absolute top-[10px] sm:top-[12px] w-1.5 h-1.5 bg-[#ffffff] rounded-full shadow-sm" />
                 </div>
               </div>
 
@@ -332,8 +332,8 @@ export default function App() {
                   style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.02) 20%, transparent 50%, rgba(0,0,0,0.02) 80%, rgba(0,0,0,0.15) 100%)' }} />
 
                 {/* Subtle Mechanical Blueprint Grid Background */}
-                <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0" 
-                     style={{ backgroundImage: 'linear-gradient(#b89c62 1px, transparent 1px), linear-gradient(90deg, #b89c62 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+                <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0"
+                  style={{ backgroundImage: 'linear-gradient(#b89c62 1px, transparent 1px), linear-gradient(90deg, #b89c62 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
                 {/* Open Book Layout Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 w-full relative">
@@ -376,7 +376,7 @@ export default function App() {
                       <span>REV: 01</span>
                     </div>
                     <div className="absolute top-12 bottom-12 left-2 w-[3px] opacity-30 pointer-events-none"
-                         style={{ backgroundImage: 'repeating-linear-gradient(to bottom, #b89c62 0, #b89c62 1px, transparent 1px, transparent 8px)' }} />
+                      style={{ backgroundImage: 'repeating-linear-gradient(to bottom, #b89c62 0, #b89c62 1px, transparent 1px, transparent 8px)' }} />
 
                     {/* Large Faint Background Watermark */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none flex items-center justify-center z-0">
@@ -421,7 +421,7 @@ export default function App() {
                         </h1>
 
                         <p className="font-['Cormorant_Garamond'] text-xs sm:text-sm md:text-base text-[#4a4a4a] italic leading-relaxed max-w-[280px] sm:max-w-[300px] mx-auto px-2">
-                          tiene el honor de compartir con familiares y amigos la culminación de su formación profesional como
+                          Tiene el honor de compartir con familiares y amigos la culminación de su formación profesional como
                         </p>
 
                         <div className="py-2 w-full">
@@ -480,7 +480,7 @@ export default function App() {
                       <span>CAD: AUTO</span>
                     </div>
                     <div className="absolute top-12 bottom-12 right-2 w-[3px] opacity-30 pointer-events-none"
-                         style={{ backgroundImage: 'repeating-linear-gradient(to bottom, #b89c62 0, #b89c62 1px, transparent 1px, transparent 8px)' }} />
+                      style={{ backgroundImage: 'repeating-linear-gradient(to bottom, #b89c62 0, #b89c62 1px, transparent 1px, transparent 8px)' }} />
 
                     {/* Large Faint Background Watermark */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none flex items-center justify-center z-0">
