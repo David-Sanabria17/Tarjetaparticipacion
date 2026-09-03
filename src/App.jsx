@@ -149,29 +149,12 @@ export default function App() {
       <audio
         ref={audioRef}
         loop
+        autoPlay
         src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=inspiring-cinematic-ambient-116199.mp3"
       />
 
-      {/* Floating Audio & Action Controls */}
+      {/* Floating Action Controls */}
       <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
-        <button
-          onClick={toggleAudio}
-          className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#0e172a]/80 backdrop-blur-md border border-amber-500/30 text-amber-200 text-xs sm:text-sm shadow-lg hover:border-amber-400 transition-all active:scale-95"
-          title={isPlayingAudio ? "Silenciar música" : "Reproducir música"}
-        >
-          {isPlayingAudio ? (
-            <>
-              <Volume2 className="w-4 h-4 text-amber-400 animate-pulse" />
-              <span className="hidden sm:inline">Música Activa</span>
-            </>
-          ) : (
-            <>
-              <VolumeX className="w-4 h-4 text-amber-400/60" />
-              <span className="hidden sm:inline">Música</span>
-            </>
-          )}
-        </button>
-
         {isOpen && (
           <button
             onClick={() => setIsOpen(false)}
