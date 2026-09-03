@@ -30,12 +30,15 @@ export default function App() {
       }
       document.removeEventListener('touchstart', tryPlay);
       document.removeEventListener('click', tryPlay);
+      document.removeEventListener('pointerdown', tryPlay);
     };
     document.addEventListener('touchstart', tryPlay, { once: true });
     document.addEventListener('click', tryPlay, { once: true });
+    document.addEventListener('pointerdown', tryPlay, { once: true });
     return () => {
       document.removeEventListener('touchstart', tryPlay);
       document.removeEventListener('click', tryPlay);
+      document.removeEventListener('pointerdown', tryPlay);
     };
   }, [isPlayingAudio]);
 
@@ -404,25 +407,25 @@ export default function App() {
                           <span className="w-10 h-[1px] bg-[#b89c62]" />
                         </div>
 
-                        <h1 className="font-['Great_Vibes'] text-5xl sm:text-5xl md:text-6xl text-[#a37f37] leading-none tracking-tight py-1 px-1 break-words w-full" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)' }}>
+                        <h1 className="font-['Great_Vibes'] text-6xl sm:text-6xl md:text-7xl text-[#a37f37] leading-none tracking-tight py-1 px-1 break-words w-full" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)' }}>
                           Sebastián Gamero Huertas
                         </h1>
 
-                        <p className="font-['Cormorant_Garamond'] text-xs sm:text-sm md:text-base text-[#4a4a4a] italic leading-relaxed max-w-[280px] sm:max-w-[300px] mx-auto px-2">
+                        <p className="font-['Cormorant_Garamond'] text-lg sm:text-base md:text-lg text-[#4a4a4a] italic leading-relaxed max-w-[320px] sm:max-w-[300px] mx-auto px-2">
                           Tiene el honor de compartir con familiares y amigos la culminación de su formación profesional como
                         </p>
 
                         <div className="py-2 w-full">
-                          <h2 className="font-['Playfair_Display'] font-extrabold text-xl sm:text-xl md:text-2xl text-[#a37f37] tracking-wider uppercase px-1">
+                          <h2 className="font-['Playfair_Display'] font-extrabold text-2xl sm:text-xl md:text-3xl text-[#a37f37] tracking-wider uppercase px-1">
                             INGENIERO MECÁNICO
                           </h2>
                         </div>
 
-                        <h3 className="font-['Playfair_Display'] font-semibold text-lg sm:text-lg text-[#1a1a1a]">
+                        <h3 className="font-['Playfair_Display'] font-semibold text-2xl sm:text-xl md:text-2xl text-[#1a1a1a]">
                           Universidad de Córdoba
                         </h3>
 
-                        <p className="font-['Cormorant_Garamond'] text-xs sm:text-sm md:text-base text-[#4a4a4a] italic leading-relaxed max-w-[280px] sm:max-w-[300px] mx-auto px-2">
+                        <p className="font-['Cormorant_Garamond'] text-lg sm:text-base md:text-lg text-[#4a4a4a] italic leading-relaxed max-w-[320px] sm:max-w-[300px] mx-auto px-2">
                           Un logro que representa el cierre de una etapa de formación, disciplina y aprendizaje, y el inicio de nuevos desafíos en el ejercicio profesional.
                         </p>
 
@@ -481,16 +484,16 @@ export default function App() {
                       <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 px-2 sm:px-6 w-full">
 
                         <div className="space-y-3 w-full">
-                          <h3 className="font-['Playfair_Display'] font-black text-xl sm:text-xl md:text-2xl text-[#1a1a1a] tracking-wider uppercase leading-tight px-1">
+                          <h3 className="font-['Playfair_Display'] font-black text-2xl sm:text-2xl md:text-3xl text-[#1a1a1a] tracking-wider uppercase leading-tight px-1">
                             CEREMONIA DE GRADO
                           </h3>
-                          <p className="font-['Playfair_Display'] font-medium text-sm sm:text-base md:text-lg text-[#2a2a2a]">
+                          <p className="font-['Playfair_Display'] font-medium text-lg sm:text-base md:text-xl text-[#2a2a2a]">
                             10 de septiembre de 2026
                           </p>
-                          <p className="font-['Playfair_Display'] font-medium text-sm sm:text-base md:text-lg text-[#2a2a2a]">
+                          <p className="font-['Playfair_Display'] font-medium text-lg sm:text-base md:text-xl text-[#2a2a2a]">
                             8:00 a. m.
                           </p>
-                          <p className="font-['Playfair_Display'] font-bold text-lg sm:text-lg md:text-xl text-[#1a1a1a] pt-1 px-1">
+                          <p className="font-['Playfair_Display'] font-bold text-xl sm:text-xl md:text-2xl text-[#1a1a1a] pt-1 px-1">
                             Centro de Convenciones
                           </p>
                         </div>
@@ -510,11 +513,11 @@ export default function App() {
                           <div className="w-12 sm:w-16 h-[2px] bg-[#a37f37]" />
                         </div>
 
-                        <p className="font-['Cormorant_Garamond'] text-base sm:text-base md:text-lg text-[#2a2a2a] max-w-[300px] sm:max-w-[300px] mx-auto italic leading-relaxed px-2">
+                        <p className="font-['Cormorant_Garamond'] text-lg sm:text-lg md:text-xl text-[#2a2a2a] max-w-[320px] sm:max-w-[300px] mx-auto italic leading-relaxed px-2">
                           Con especial reconocimiento a mis padres que me acompañaron en este camino.
                         </p>
 
-                        <div className="space-y-1 font-['Cormorant_Garamond'] font-bold italic text-lg sm:text-lg md:text-xl text-[#1a1a1a] pt-3">
+                        <div className="space-y-1 font-['Cormorant_Garamond'] font-bold italic text-xl sm:text-xl md:text-2xl text-[#1a1a1a] pt-3">
                           <p>Eliana Judith Huertas Guerra</p>
                           <p>Jorge Eliécer Gamero Morales</p>
                         </div>
