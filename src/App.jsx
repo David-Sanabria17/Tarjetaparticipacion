@@ -22,25 +22,13 @@ export default function App() {
   const [dragProgress, setDragProgress] = useState(0);
   const audioRef = useRef(null);
 
-  // Auto-play audio on first user interaction (required by mobile browsers)
-  useEffect(() => {
-    const tryPlay = () => {
-      if (audioRef.current && !isPlayingAudio) {
-        audioRef.current.play().then(() => setIsPlayingAudio(true)).catch(() => {});
-      }
-      document.removeEventListener('touchstart', tryPlay);
-      document.removeEventListener('click', tryPlay);
-      document.removeEventListener('pointerdown', tryPlay);
-    };
-    document.addEventListener('touchstart', tryPlay, { once: true });
-    document.addEventListener('click', tryPlay, { once: true });
-    document.addEventListener('pointerdown', tryPlay, { once: true });
-    return () => {
-      document.removeEventListener('touchstart', tryPlay);
-      document.removeEventListener('click', tryPlay);
-      document.removeEventListener('pointerdown', tryPlay);
-    };
-  }, [isPlayingAudio]);
+  // Auto-play audio robustly on interaction
+  const handleFirstInteraction = () => {
+    if (audioRef.current && audioRef.current.paused) {
+      audioRef.current.play().then(() => setIsPlayingAudio(true)).catch((e) => console.log('Audio play failed:', e));
+    }
+  };
+
 
   // Framer Motion drag controls for tearing/sliding open
   const dragX = useMotionValue(0);
@@ -132,6 +120,9 @@ export default function App() {
 
   return (
     <div
+      onClick={handleFirstInteraction}
+      onTouchStart={handleFirstInteraction}
+      onPointerDown={handleFirstInteraction}
       className="relative min-h-screen w-full flex flex-col items-center justify-center text-[#1a1a1a] p-3 sm:p-6 select-none overflow-x-hidden transition-colors duration-1000 ease-in-out"
       style={{
         backgroundColor: isOpen ? '#060911' : '#f4eee3'
@@ -149,7 +140,6 @@ export default function App() {
       <audio
         ref={audioRef}
         loop
-        autoPlay
         src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=inspiring-cinematic-ambient-116199.mp3"
       />
 
@@ -256,6 +246,7 @@ export default function App() {
                     dragConstraints={{ left: 0, right: maxDrag }}
                     dragElastic={0.05}
                     dragSnapToOrigin={true}
+                    onDragStart={handleFirstInteraction}
                     style={{ x: dragX, background: 'linear-gradient(135deg, #f3e5ab, #d4af37, #aa7c11)' }}
                     onDrag={(e, info) => {
                       setDragProgress(Math.min(1, info.offset.x / maxDrag));
