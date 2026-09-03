@@ -122,7 +122,9 @@ export default function App() {
     <div
       onClick={handleFirstInteraction}
       onTouchStart={handleFirstInteraction}
+      onTouchEnd={handleFirstInteraction}
       onPointerDown={handleFirstInteraction}
+      onPointerUp={handleFirstInteraction}
       className="relative min-h-screen w-full flex flex-col items-center justify-center text-[#1a1a1a] p-3 sm:p-6 select-none overflow-x-hidden transition-colors duration-1000 ease-in-out"
       style={{
         backgroundColor: isOpen ? '#060911' : '#f4eee3'
@@ -247,6 +249,9 @@ export default function App() {
                     dragElastic={0.05}
                     dragSnapToOrigin={true}
                     onDragStart={handleFirstInteraction}
+                    onDragEnd={handleFirstInteraction}
+                    onPointerUp={handleFirstInteraction}
+                    onTouchEnd={handleFirstInteraction}
                     style={{ x: dragX, background: 'linear-gradient(135deg, #f3e5ab, #d4af37, #aa7c11)' }}
                     onDrag={(e, info) => {
                       setDragProgress(Math.min(1, info.offset.x / maxDrag));
