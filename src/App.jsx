@@ -400,7 +400,7 @@ export default function App() {
                           </h2>
                         </div>
 
-                        <h3 className="font-['Playfair_Display'] font-semibold text-2xl sm:text-xl md:text-2xl text-[#1a1a1a]">
+                        <h3 className="font-['Playfair_Display'] font-semibold text-lg sm:text-xl md:text-2xl text-[#1a1a1a]">
                           Universidad de Córdoba
                         </h3>
 
