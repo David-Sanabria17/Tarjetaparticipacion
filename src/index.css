@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --navy-dark: #080d19;
+  --navy-deep: #0e172a;
+  --navy-card: #152238;
+  --navy-light: #1e2e4a;
+  
+  --gold-primary: #d4af37;
+  --gold-light: #f3e5ab;
+  --gold-deep: #aa7c11;
+  --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+  --gold-text-gradient: linear-gradient(135deg, #c5a059 0%, #fdf0cd 30%, #d4af37 60%, #b8860b 100%);
+
+  --cream-bg: #faf7f2;
+  --cream-paper: #f4eee3;
+  --cream-border: #e6dac6;
+  --charcoal: #1c1d1f;
+  --charcoal-light: #3d3e42;
+
+  --font-script: 'Great Vibes', 'Alex Brush', cursive;
+  --font-heading: 'Cormorant Garamond', 'Playfair Display', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #060911;
+  color: #1a1a1a;
+  font-family: var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Metallic Gold Text Shimmer */
+.gold-text {
+  background: var(--gold-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.gold-border {
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+}
+
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+/* Paper Texture Effect for Card Interior */
+.paper-texture {
+  background-color: var(--cream-bg);
+  background-image: 
+    radial-gradient(rgba(180, 150, 90, 0.05) 1px, transparent 0),
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 20px 20px, 100% 100%;
+  box-shadow: inset 0 0 40px rgba(184, 134, 11, 0.05);
+}
+
+/* Tassel Decoration */
+.tassel-thread {
+  background: linear-gradient(to bottom, #d4af37, #fdf0cd, #b8860b);
+}
+
+/* Pulse animation for tearing slider indicator */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(254, 240, 205, 0.9), 0 0 35px rgba(212, 175, 55, 0.6);
+  }
+}
+
+.glow-animation {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Shimmer bar animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transform: translateX(-100%);
+  animation: shimmer 3s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d1322;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5a059;
+  border-radius: 3px;
+}
