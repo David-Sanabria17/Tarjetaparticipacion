@@ -22,24 +22,22 @@ export default function App() {
   const [dragProgress, setDragProgress] = useState(0);
   const audioRef = useRef(null);
 
-  // Countdown to graduation: September 10, 2026 at 8:00 AM COT
-  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  // Auto-play audio on first user interaction (required by mobile browsers)
   useEffect(() => {
-    const targetDate = new Date('2026-09-10T08:00:00-05:00').getTime();
-    const updateCountdown = () => {
-      const now = Date.now();
-      const diff = Math.max(0, targetDate - now);
-      setCountdown({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60)
-      });
+    const tryPlay = () => {
+      if (audioRef.current && !isPlayingAudio) {
+        audioRef.current.play().then(() => setIsPlayingAudio(true)).catch(() => {});
+      }
+      document.removeEventListener('touchstart', tryPlay);
+      document.removeEventListener('click', tryPlay);
     };
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
+    document.addEventListener('touchstart', tryPlay, { once: true });
+    document.addEventListener('click', tryPlay, { once: true });
+    return () => {
+      document.removeEventListener('touchstart', tryPlay);
+      document.removeEventListener('click', tryPlay);
+    };
+  }, [isPlayingAudio]);
 
   // Framer Motion drag controls for tearing/sliding open
   const dragX = useMotionValue(0);
@@ -379,19 +377,19 @@ export default function App() {
                       {/* Left Gear Column */}
                       <div className="hidden sm:flex absolute left-8 top-1/2 -translate-y-1/2 flex-col items-center justify-between h-[70%] pr-5 border-r border-[#b89c62]/40 text-[#b89c62]/70 z-20">
                         <motion.div whileHover={{ scale: 1.3, color: '#d4af37', rotate: 90 }} transition={{ type: 'spring' }} className="cursor-pointer">
-                          <Settings className="w-5 h-5 animate-[spin_8s_linear_infinite]" />
+                          <Settings className="w-5 h-5 animate-[spin_18s_linear_infinite]" />
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.3, color: '#d4af37' }} className="cursor-pointer">
                           <Hexagon className="w-4 h-4" />
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.4, color: '#d4af37', rotate: -90 }} transition={{ type: 'spring' }} className="cursor-pointer">
-                          <Settings className="w-6 h-6 animate-[spin_6s_linear_infinite_reverse]" />
+                          <Settings className="w-6 h-6 animate-[spin_14s_linear_infinite_reverse]" />
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.3, color: '#d4af37' }} className="cursor-pointer">
                           <Compass className="w-5 h-5" />
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.3, color: '#d4af37', rotate: 90 }} transition={{ type: 'spring' }} className="cursor-pointer">
-                          <Settings className="w-5 h-5 animate-[spin_8s_linear_infinite]" />
+                          <Settings className="w-5 h-5 animate-[spin_18s_linear_infinite]" />
                         </motion.div>
                       </div>
 
@@ -401,12 +399,12 @@ export default function App() {
                         <div className="flex items-center justify-center w-full gap-3 text-[#b89c62] z-20 relative">
                           <span className="w-10 h-[1px] bg-[#b89c62]" />
                           <motion.div whileHover={{ scale: 1.5, color: '#d4af37' }} className="cursor-pointer">
-                            <Settings className="w-4 h-4 animate-[spin_4s_linear_infinite]" />
+                            <Settings className="w-4 h-4 animate-[spin_12s_linear_infinite]" />
                           </motion.div>
                           <span className="w-10 h-[1px] bg-[#b89c62]" />
                         </div>
 
-                        <h1 className="font-['Great_Vibes'] text-4xl sm:text-5xl md:text-6xl text-[#a37f37] leading-none tracking-tight py-1 px-1 break-words w-full" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)' }}>
+                        <h1 className="font-['Great_Vibes'] text-5xl sm:text-5xl md:text-6xl text-[#a37f37] leading-none tracking-tight py-1 px-1 break-words w-full" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.05)' }}>
                           Sebastián Gamero Huertas
                         </h1>
 
@@ -415,12 +413,12 @@ export default function App() {
                         </p>
 
                         <div className="py-2 w-full">
-                          <h2 className="font-['Playfair_Display'] font-extrabold text-lg sm:text-xl md:text-2xl text-[#a37f37] tracking-wider uppercase px-1">
+                          <h2 className="font-['Playfair_Display'] font-extrabold text-xl sm:text-xl md:text-2xl text-[#a37f37] tracking-wider uppercase px-1">
                             INGENIERO MECÁNICO
                           </h2>
                         </div>
 
-                        <h3 className="font-['Playfair_Display'] font-semibold text-base sm:text-lg text-[#1a1a1a]">
+                        <h3 className="font-['Playfair_Display'] font-semibold text-lg sm:text-lg text-[#1a1a1a]">
                           Universidad de Córdoba
                         </h3>
 
@@ -483,7 +481,7 @@ export default function App() {
                       <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 px-2 sm:px-6 w-full">
 
                         <div className="space-y-3 w-full">
-                          <h3 className="font-['Playfair_Display'] font-black text-lg sm:text-xl md:text-2xl text-[#1a1a1a] tracking-wider uppercase leading-tight px-1">
+                          <h3 className="font-['Playfair_Display'] font-black text-xl sm:text-xl md:text-2xl text-[#1a1a1a] tracking-wider uppercase leading-tight px-1">
                             CEREMONIA DE GRADO
                           </h3>
                           <p className="font-['Playfair_Display'] font-medium text-sm sm:text-base md:text-lg text-[#2a2a2a]">
@@ -492,7 +490,7 @@ export default function App() {
                           <p className="font-['Playfair_Display'] font-medium text-sm sm:text-base md:text-lg text-[#2a2a2a]">
                             8:00 a. m.
                           </p>
-                          <p className="font-['Playfair_Display'] font-bold text-base sm:text-lg md:text-xl text-[#1a1a1a] pt-1 px-1">
+                          <p className="font-['Playfair_Display'] font-bold text-lg sm:text-lg md:text-xl text-[#1a1a1a] pt-1 px-1">
                             Centro de Convenciones
                           </p>
                         </div>
@@ -501,22 +499,22 @@ export default function App() {
                         <div className="flex items-center justify-center w-full gap-4 text-[#a37f37] py-2 z-20 relative">
                           <div className="w-12 sm:w-16 h-[2px] bg-[#a37f37]" />
                           <motion.div whileHover={{ scale: 1.3, color: '#d4af37' }} className="cursor-pointer">
-                            <Settings className="w-5 h-5 animate-[spin_10s_linear_infinite]" />
+                            <Settings className="w-5 h-5 animate-[spin_20s_linear_infinite]" />
                           </motion.div>
                           <motion.div whileHover={{ scale: 1.3, color: '#d4af37', rotate: 15 }} className="cursor-pointer">
                             <Wrench className="w-6 h-6 text-[#a37f37]" />
                           </motion.div>
                           <motion.div whileHover={{ scale: 1.3, color: '#d4af37' }} className="cursor-pointer">
-                            <Settings className="w-5 h-5 animate-[spin_10s_linear_infinite_reverse]" />
+                            <Settings className="w-5 h-5 animate-[spin_20s_linear_infinite_reverse]" />
                           </motion.div>
                           <div className="w-12 sm:w-16 h-[2px] bg-[#a37f37]" />
                         </div>
 
-                        <p className="font-['Cormorant_Garamond'] text-sm sm:text-base md:text-lg text-[#2a2a2a] max-w-[280px] sm:max-w-[300px] mx-auto italic leading-relaxed px-2">
+                        <p className="font-['Cormorant_Garamond'] text-base sm:text-base md:text-lg text-[#2a2a2a] max-w-[300px] sm:max-w-[300px] mx-auto italic leading-relaxed px-2">
                           Con especial reconocimiento a mis padres que me acompañaron en este camino.
                         </p>
 
-                        <div className="space-y-1 font-['Cormorant_Garamond'] font-bold italic text-base sm:text-lg md:text-xl text-[#1a1a1a] pt-3">
+                        <div className="space-y-1 font-['Cormorant_Garamond'] font-bold italic text-lg sm:text-lg md:text-xl text-[#1a1a1a] pt-3">
                           <p>Eliana Judith Huertas Guerra</p>
                           <p>Jorge Eliécer Gamero Morales</p>
                         </div>
@@ -526,19 +524,19 @@ export default function App() {
                       {/* Right Gear Column (Symmetry) */}
                       <div className="hidden sm:flex absolute right-8 top-1/2 -translate-y-1/2 flex-col items-center justify-between h-[70%] pl-5 border-l border-[#b89c62]/40 text-[#b89c62]/70 z-20">
                         <motion.div whileHover={{ scale: 1.3, color: '#d4af37', rotate: -90 }} transition={{ type: 'spring' }} className="cursor-pointer">
-                          <Settings className="w-5 h-5 animate-[spin_8s_linear_infinite_reverse]" />
+                          <Settings className="w-5 h-5 animate-[spin_18s_linear_infinite_reverse]" />
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.3, color: '#d4af37' }} className="cursor-pointer">
                           <Wrench className="w-4 h-4" />
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.4, color: '#d4af37', rotate: 90 }} transition={{ type: 'spring' }} className="cursor-pointer">
-                          <Settings className="w-6 h-6 animate-[spin_6s_linear_infinite]" />
+                          <Settings className="w-6 h-6 animate-[spin_14s_linear_infinite]" />
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.3, color: '#d4af37' }} className="cursor-pointer">
                           <Hexagon className="w-4 h-4" />
                         </motion.div>
                         <motion.div whileHover={{ scale: 1.3, color: '#d4af37', rotate: -90 }} transition={{ type: 'spring' }} className="cursor-pointer">
-                          <Settings className="w-5 h-5 animate-[spin_8s_linear_infinite_reverse]" />
+                          <Settings className="w-5 h-5 animate-[spin_18s_linear_infinite_reverse]" />
                         </motion.div>
                       </div>
 
