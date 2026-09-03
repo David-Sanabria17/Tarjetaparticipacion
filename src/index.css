@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+/* Fonts are loaded via <link> in index.html - no @import needed here */
 
 @import "tailwindcss";
 
@@ -130,4 +130,38 @@ html, body {
 ::-webkit-scrollbar-thumb {
   background: #c5a059;
   border-radius: 3px;
+}
+
+/* GPU compositing hint for animated elements */
+[class*='animate-'] {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* On mobile: slow down/simplify heavy background watermark gears */
+@media (max-width: 768px) {
+  /* Slow down heavy watermark gears to reduce GPU load */
+  .gear-watermark {
+    animation-duration: 80s !important;
+  }
+  /* Disable glow pulse on the slider button — saves a repaint loop */
+  .glow-animation {
+    animation: none;
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.5);
+  }
+  /* Disable shimmer on mobile */
+  .shimmer-effect::after {
+    animation: none;
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [class*='animate-'],
+  .glow-animation,
+  .shimmer-effect::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

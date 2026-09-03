@@ -137,22 +137,12 @@ export default function App() {
       }}
     >
 
-      {/* Background Subtle Gradient & Glowing Particles */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        {!isOpen ? (
-          <>
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[140px]" />
-            <div className="absolute bottom-10 left-10 w-[300px] h-[300px] bg-amber-800/10 rounded-full blur-[120px]" />
-            <div className="absolute top-10 right-10 w-[250px] h-[250px] bg-amber-400/15 rounded-full blur-[100px]" />
-          </>
-        ) : (
-          <>
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[140px]" />
-            <div className="absolute bottom-10 left-10 w-[300px] h-[300px] bg-blue-900/15 rounded-full blur-[120px]" />
-            <div className="absolute top-10 right-10 w-[250px] h-[250px] bg-amber-400/10 rounded-full blur-[100px]" />
-          </>
-        )}
-      </div>
+      {/* Background Subtle Gradient - simplified for performance */}
+      <div className="fixed inset-0 pointer-events-none z-0"
+           style={{ background: isOpen
+             ? 'radial-gradient(ellipse at 50% 25%, rgba(180,130,40,0.07) 0%, transparent 60%)'
+             : 'radial-gradient(ellipse at 50% 25%, rgba(200,150,60,0.08) 0%, transparent 60%)'
+           }} />
 
       {/* Background Audio (Royalty-free soft celebratory acoustic piano background) */}
       <audio
@@ -221,10 +211,10 @@ export default function App() {
 
               {/* Mechanical Envelope Accents - Clipped to Envelope */}
               <div className="absolute inset-0 overflow-hidden rounded-[16px] pointer-events-none z-0">
-                <div className="absolute -top-12 -left-12 opacity-15">
+                <div className="absolute -top-12 -left-12 opacity-15 gear-watermark">
                   <Settings className="w-48 h-48 text-[#d4af37] animate-[spin_30s_linear_infinite]" />
                 </div>
-                <div className="absolute -bottom-16 -right-16 opacity-10">
+                <div className="absolute -bottom-16 -right-16 opacity-10 gear-watermark">
                   <Settings className="w-56 h-56 text-[#d4af37] animate-[spin_25s_linear_infinite_reverse]" />
                 </div>
               </div>
@@ -306,10 +296,10 @@ export default function App() {
             /* ============================================================== */
             <motion.div
               key="book-card"
-              initial={{ opacity: 0, scale: 0.85, rotateY: -30 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.3 } }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-5xl my-2 p-3 sm:p-5 rounded-2xl select-none"
               style={{
                 backgroundColor: '#736555',
@@ -340,9 +330,9 @@ export default function App() {
 
                   {/* ================= LEFT PAGE ================= */}
                   <motion.div
-                    initial={{ opacity: 0, rotateY: 35, transformOrigin: "right center" }}
-                    animate={{ opacity: 1, rotateY: 0 }}
-                    transition={{ duration: 0.9, delay: 0.2 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
                     className="relative flex flex-col w-full min-h-[500px] sm:min-h-[600px] p-6 sm:p-12 border-b md:border-b-0 border-[#c5a059]/30"
                   >
                     {/* Double Border */}
@@ -379,7 +369,7 @@ export default function App() {
                       style={{ backgroundImage: 'repeating-linear-gradient(to bottom, #b89c62 0, #b89c62 1px, transparent 1px, transparent 8px)' }} />
 
                     {/* Large Faint Background Watermark */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none flex items-center justify-center z-0">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none flex items-center justify-center z-0 gear-watermark">
                       <Settings className="w-64 h-64 sm:w-80 sm:h-80 animate-[spin_40s_linear_infinite]" />
                     </div>
 
@@ -444,9 +434,9 @@ export default function App() {
 
                   {/* ================= RIGHT PAGE ================= */}
                   <motion.div
-                    initial={{ opacity: 0, rotateY: -35, transformOrigin: "left center" }}
-                    animate={{ opacity: 1, rotateY: 0 }}
-                    transition={{ duration: 0.9, delay: 0.4 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
                     className="relative flex flex-col w-full min-h-[500px] sm:min-h-[600px] p-6 sm:p-12"
                   >
                     {/* Double Border */}
@@ -483,7 +473,7 @@ export default function App() {
                       style={{ backgroundImage: 'repeating-linear-gradient(to bottom, #b89c62 0, #b89c62 1px, transparent 1px, transparent 8px)' }} />
 
                     {/* Large Faint Background Watermark */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none flex items-center justify-center z-0">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06] pointer-events-none flex items-center justify-center z-0 gear-watermark">
                       <Settings className="w-64 h-64 sm:w-80 sm:h-80 animate-[spin_40s_linear_infinite_reverse]" />
                     </div>
 
